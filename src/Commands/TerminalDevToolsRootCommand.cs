@@ -7,5 +7,6 @@ public class TerminalDevToolsRootCommand : RootCommand
     {
         AddCommand(new GenerateCommand());
         AddCommand(new EncodeCommand());
+        AddCommand(new DecodeCommand());
     }
 }

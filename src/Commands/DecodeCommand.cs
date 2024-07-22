@@ -2,7 +2,7 @@ using System.CommandLine.Invocation;
 
 namespace TerminalDevTools.Commands;
 
-public class EncodeCommand() : EncodingCommand(name: "encode", description: "An encoding tool")
+public class DecodeCommand() : EncodingCommand(name: "decode", description: "A decoding tool")
 {
     protected override void HandleBase64(InvocationContext context, FileInfo fileInfo)
     {
