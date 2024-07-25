@@ -54,6 +54,11 @@ public partial class GenerateCommand
                 {
                     output.AppendLine(option switch
                     {
+                        DateOfBirthOptionValueName =>
+                            $"date_of_birth={_random.NextDate(
+                            DateOnly.FromDateTime(DateTime.Today).AddYears(-60),
+                            DateOnly.FromDateTime(DateTime.Today).AddYears(-18)
+                            ):yyyy-MM-dd}",
                         CpfOptionValueName => $"cpf={_random.Cpf()}",
                         PisOptionValueName => $"pis_pasep={_random.PisPasep()}",
                         string any => throw new NotImplementedException($"Option {any} not implemented"),
