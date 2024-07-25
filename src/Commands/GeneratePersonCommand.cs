@@ -1,5 +1,8 @@
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.Text;
+
+using TerminalDevTools.Generators;
 
 namespace TerminalDevTools.Commands;
 
@@ -22,6 +25,7 @@ public partial class GenerateCommand
             PisOptionValueName,
             GenderOptionValueName
         ];
+        private readonly Random _random = new();
         private readonly Option<IEnumerable<string>> _dataOption = new Option<IEnumerable<string>>
         (
             aliases: ["--data", "-d"],
@@ -43,7 +47,18 @@ public partial class GenerateCommand
                 IEnumerable<string> data = context.ParseResult.GetValueForOption(_dataOption) ?? [];
                 if (!data.Any())
                     data = data.Union(DataOptions);
-                // TODO: implement here
+
+                data = data.OrderBy(s => s);
+                StringBuilder output = new();
+                foreach (var option in data)
+                {
+                    output.Append(option switch
+                    {
+                        CpfOptionValueName => _random.Cpf(),
+                        string any => throw new NotImplementedException($"Option {any} not implemented"),
+                    });
+                }
+                context.Console.WriteLine(output.ToString());
                 context.ExitCode = 0;
             }
             catch (Exception ex)
