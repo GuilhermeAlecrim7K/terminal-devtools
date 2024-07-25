@@ -52,9 +52,10 @@ public partial class GenerateCommand
                 StringBuilder output = new();
                 foreach (var option in data)
                 {
-                    output.Append(option switch
+                    output.AppendLine(option switch
                     {
-                        CpfOptionValueName => _random.Cpf(),
+                        CpfOptionValueName => $"cpf={_random.Cpf()}",
+                        PisOptionValueName => $"pis_pasep={_random.PisPasep()}",
                         string any => throw new NotImplementedException($"Option {any} not implemented"),
                     });
                 }
