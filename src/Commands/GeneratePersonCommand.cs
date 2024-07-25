@@ -61,6 +61,7 @@ public partial class GenerateCommand
                             ):yyyy-MM-dd}",
                         CpfOptionValueName => $"cpf={_random.Cpf()}",
                         PisOptionValueName => $"pis_pasep={_random.PisPasep()}",
+                        RgOptionValueName => $"rg_ssp_sp={_random.Rg()}",
                         string any => throw new NotImplementedException($"Option {any} not implemented"),
                     });
                 }
