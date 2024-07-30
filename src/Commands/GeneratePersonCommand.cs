@@ -10,20 +10,16 @@ public partial class GenerateCommand
 {
     private class GeneratePersonCommand : Command
     {
-        private const string FullNameOptionValueName = "full-name";
         private const string CpfOptionValueName = "cpf";
 
         private const string RgOptionValueName = "rg";
         private const string DateOfBirthOptionValueName = "date-of-birth";
         private const string PisOptionValueName = "pis";
-        private const string GenderOptionValueName = "gender";
         private static readonly string[] DataOptions = [
-            FullNameOptionValueName,
             RgOptionValueName,
             CpfOptionValueName,
             DateOfBirthOptionValueName,
             PisOptionValueName,
-            GenderOptionValueName
         ];
         private readonly Random _random = new();
         private readonly Option<IEnumerable<string>> _dataOption = new Option<IEnumerable<string>>
