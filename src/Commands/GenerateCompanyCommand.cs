@@ -7,13 +7,11 @@ public partial class GenerateCommand
 {
     private class GenerateCompanyCommand : Command
     {
-        private const string NameOption = "name";
         private const string BaseCnpjOptionValueName = "base-cnpj";
         private const string FullCnpjOptionValueName = "full-cnpj";
         private const string CpfOptionValueName = "cpf";
         private const string CaepfOptionValueName = "caepf";
         private static readonly string[] DataOptions = [
-            NameOption,
             BaseCnpjOptionValueName,
             FullCnpjOptionValueName,
             CpfOptionValueName,
