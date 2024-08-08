@@ -1,6 +1,6 @@
 namespace TerminalDevTools.Generators;
 
-public static class RgGenerator
+internal static class RgGenerator
 {
     /// Model SSP-SP
     public static string Rg(this Random random)

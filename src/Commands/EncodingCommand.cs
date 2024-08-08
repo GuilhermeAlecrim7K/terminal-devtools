@@ -3,7 +3,7 @@ using System.CommandLine.Invocation;
 
 namespace TerminalDevTools.Commands;
 
-public abstract class EncodingCommand : Command
+internal abstract class EncodingCommand : Command
 {
     private readonly Option<EncodingOption> _encodingOption = new(aliases: ["--encoding", "-e"])
     {

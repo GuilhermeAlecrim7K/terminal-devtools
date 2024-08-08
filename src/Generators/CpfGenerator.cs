@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace TerminalDevTools.Generators;
 
-public static class CpfGenerator
+internal static class CpfGenerator
 {
     public static string Cpf(this Random random)
     {

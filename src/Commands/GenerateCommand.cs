@@ -2,7 +2,7 @@ using System.CommandLine;
 
 namespace TerminalDevTools.Commands;
 
-public partial class GenerateCommand : Command
+internal sealed partial class GenerateCommand : Command
 {
     private readonly GeneratePersonCommand _personCommand = new();
     private readonly GenerateCompanyCommand _companyCommand = new();

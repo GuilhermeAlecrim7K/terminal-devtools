@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace TerminalDevTools.Generators;
 
-public static class CnpjGenerator
+internal static class CnpjGenerator
 {
 
     public static string BaseCnpj(this Random random)

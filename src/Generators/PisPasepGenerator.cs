@@ -2,7 +2,7 @@ using System.Collections.Immutable;
 
 namespace TerminalDevTools.Generators;
 
-public static class PisPasepGenerator
+internal static class PisPasepGenerator
 {
     public static string PisPasep(this Random random)
     {

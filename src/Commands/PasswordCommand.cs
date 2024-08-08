@@ -2,7 +2,7 @@ using System.CommandLine;
 
 namespace TerminalDevTools.Commands;
 
-public class PasswordCommand : Command
+internal sealed class PasswordCommand : Command
 {
     public PasswordCommand() : base(name: "password", description: "A password tool")
     {

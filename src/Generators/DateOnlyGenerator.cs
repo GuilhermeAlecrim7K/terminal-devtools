@@ -1,6 +1,6 @@
 namespace TerminalDevTools.Generators;
 
-public static class DateOnlyGenerator
+internal static class DateOnlyGenerator
 {
     public static DateOnly NextDate(this Random random, DateOnly minValue, DateOnly maxValue)
     {

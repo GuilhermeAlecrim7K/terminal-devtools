@@ -6,7 +6,7 @@ using TerminalDevTools.Generators;
 
 namespace TerminalDevTools.Commands;
 
-public partial class GenerateCommand
+internal sealed partial class GenerateCommand
 {
     private class GenerateCompanyCommand : Command
     {
