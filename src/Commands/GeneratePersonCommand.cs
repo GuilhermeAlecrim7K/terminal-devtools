@@ -2,7 +2,8 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.Text;
 
-using TerminalDevTools.Generators;
+using TerminalDevTools.Extensions;
+using TerminalDevTools.Models;
 
 namespace TerminalDevTools.Commands;
 
@@ -30,8 +31,11 @@ internal sealed partial class GenerateCommand
         {
             AllowMultipleArgumentsPerToken = true,
         }.FromAmong(DataOptions);
-        public GeneratePersonCommand() : base(name: "person", "Generates an individual's personal data")
+        private readonly Option<bool> _formatOption;
+
+        public GeneratePersonCommand(Option<bool> formatOption) : base(name: "person", "Generates an individual's personal data")
         {
+            _formatOption = formatOption;
             AddOption(_dataOption);
             this.SetHandler(CommandHandler);
         }
@@ -40,6 +44,7 @@ internal sealed partial class GenerateCommand
         {
             try
             {
+                bool format = context.ParseResult.GetValueForOption(_formatOption);
                 IEnumerable<string> data = context.ParseResult.GetValueForOption(_dataOption) ?? [];
                 if (!data.Any())
                     data = data.Union(DataOptions);
@@ -48,17 +53,19 @@ internal sealed partial class GenerateCommand
                 StringBuilder output = new();
                 foreach (var option in data)
                 {
-                    output.AppendLine(option switch
+                    output.AppendLine((option, format) switch
                     {
-                        DateOfBirthOptionValueName =>
+                        (DateOfBirthOptionValueName, _) =>
                             $"date_of_birth={_random.NextDate(
                             DateOnly.FromDateTime(DateTime.Today).AddYears(-60),
                             DateOnly.FromDateTime(DateTime.Today).AddYears(-18)
                             ):yyyy-MM-dd}",
-                        CpfOptionValueName => $"cpf={_random.Cpf()}",
-                        PisOptionValueName => $"pis_pasep={_random.PisPasep()}",
-                        RgOptionValueName => $"rg_ssp_sp={_random.Rg()}",
-                        string any => throw new NotImplementedException($"Option {any} not implemented"),
+                        (CpfOptionValueName, true) => $"cpf={new CpfModel(_random).Formatted()}",
+                        (CpfOptionValueName, false) => $"cpf={new CpfModel(_random).Unformatted()}",
+                        (PisOptionValueName, true) => $"pis_pasep={new PisPasepModel(_random).Formatted()}",
+                        (PisOptionValueName, false) => $"pis_pasep={new PisPasepModel(_random).Unformatted()}",
+                        (RgOptionValueName, false) => $"rg_ssp_sp={new RgSspSpModel(_random).Unformatted()}",
+                        (string any, _) => throw new NotImplementedException($"Option {any} not implemented"),
                     });
                 }
                 context.Console.WriteLine(output.ToString());
