@@ -8,7 +8,7 @@ namespace TerminalDevTools.Commands;
 
 internal sealed partial class GenerateCommand
 {
-    private class GenerateCompanyCommand : Command
+    private sealed class GenerateCompanyCommand : Command
     {
         private const string BaseCnpjOptionValueName = "base-cnpj";
         private const string FullCnpjOptionValueName = "full-cnpj";

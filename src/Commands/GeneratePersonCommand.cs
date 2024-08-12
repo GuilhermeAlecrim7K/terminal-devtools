@@ -9,7 +9,7 @@ namespace TerminalDevTools.Commands;
 
 internal sealed partial class GenerateCommand
 {
-    private class GeneratePersonCommand : Command
+    private sealed class GeneratePersonCommand : Command
     {
         private const string CpfOptionValueName = "cpf";
 
