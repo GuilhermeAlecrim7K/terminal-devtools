@@ -1,7 +1,7 @@
 using System.CommandLine;
 
 namespace TerminalDevTools.Commands;
-public class TerminalDevToolsRootCommand : RootCommand
+internal sealed class TerminalDevToolsRootCommand : RootCommand
 {
     public TerminalDevToolsRootCommand() : base(description: "TerminalDevTools")
     {

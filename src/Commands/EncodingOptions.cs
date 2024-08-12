@@ -1,6 +1,6 @@
 namespace TerminalDevTools.Commands;
 
-public enum EncodingOption
+internal enum EncodingOption
 {
     Base64,
 }
